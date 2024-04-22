@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     // Télécharger et installer Python 3 et pip
-                    sh 'wget https://bootstrap.pypa.io/get-pip.py'
+                    sh 'curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py'
                     sh 'python3 get-pip.py'
 
                     // Installer les dépendances Python depuis requirements.txt
