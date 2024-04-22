@@ -2,15 +2,19 @@ pipeline {
     agent any
 
     stages {
+        stage('Setup') {
+            steps {
+                script {
+                    sh 'python3 --version || sudo apt install -y python3'
+                    sh 'python3 -m venv venv'
+                    sh 'source venv/bin/activate'
+                }
+            }
+        }
         stage('Install Dependencies') {
             steps {
                 script {
-                    // Installation de Python et pip
-                    sh 'apt-get update'
-                    sh 'apt-get install -y python3 python3-pip'
-
-                    // Installation des dépendances Python depuis requirements.txt
-                    sh 'pip3 install --user -r requirements.txt'
+                    sh 'pip install -r requirements.txt'
                 }
             }
         }
