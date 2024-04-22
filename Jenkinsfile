@@ -5,9 +5,12 @@ pipeline {
         stage('Setup') {
             steps {
                 script {
-                    sh 'python3 --version || sudo apt install -y python3'
-                    sh 'python3 -m venv venv'
-                    sh 'source venv/bin/activate'
+                    // Télécharger et installer Python 3 et pip
+                    sh 'wget https://bootstrap.pypa.io/get-pip.py'
+                    sh 'python3 get-pip.py'
+
+                    // Installer les dépendances Python depuis requirements.txt
+                    sh 'pip install -r requirements.txt'
                 }
             }
         }
