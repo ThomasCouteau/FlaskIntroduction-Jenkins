@@ -5,10 +5,9 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 script {
-                    // Install Python
-                    sh 'apt update && apt install -y python3 python3-pip'
+                    sh 'sudo apt update'
+                    sh 'sudo apt install -y python3 python3-pip'
 
-                    // Install dependencies
                     sh 'pip3 install -r requirements.txt'
                 }
             }
@@ -33,7 +32,7 @@ pipeline {
             }
         }
     }
-    
+
     post {
         success {
             archiveArtifacts artifacts: '**/*', onlyIfSuccessful: true
