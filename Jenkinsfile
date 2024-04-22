@@ -3,12 +3,16 @@ pipeline {
 
     stages {
         stage('Install Dependencies') {
-            script {
+            steps {
+                script {
+                    // Installation de Python et pip
                     sh 'apt-get update'
                     sh 'apt-get install -y python3 python3-pip'
 
+                    // Installation des dépendances Python depuis requirements.txt
                     sh 'pip3 install --user -r requirements.txt'
                 }
+            }
         }
         stage('Run Unit Tests') {
             steps {
